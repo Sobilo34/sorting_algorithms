@@ -5,9 +5,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#include <stdio.h>
 
 /**
- * struct listint_s - Doubly linked list node
+ * struct listint_s - This is a doubly linked list node
  *
  * @n: Integer stored in the node
  * @prev: Pointer to the previous element of the list

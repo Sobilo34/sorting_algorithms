@@ -1,49 +1,37 @@
 #include "sort.h"
 #include <stdio.h>
-
-/**
- */
-
-void insertion_sort_list(listint_t **list)
+  
+ /** 
+  * insertion_sort_list - This is a function that performs the insertion sort
+  * @list: This is the Array of doubly linked list 
+  * Return: Nothing
+  */ 
+ void insertion_sort_list(listint_t **list) 
 {
 	listint_t *current, *temp;
 
 	if (list == NULL || *list == NULL || (*list)->next == NULL)
-	return;
-
+                 return;
+  
 	current = (*list)->next;
-
 	while (current != NULL)
-	{
-		temp = current->next;
-		while (current->prev != NULL && current->n < current->prev->n)
+	{ 
+		temp = current->prev;
+		while (temp != NULL && temp->n > current->n)
 		{
-			/* Swap node */
-			swap_nodes(list, current, current->prev);
-			/* Print list after swap */
-			print_list(*list);
+			temp->next = current->next;
+			if (current->next != NULL)
+				current->next->prev = temp;
+			current->next = temp;
+			current->prev = temp->prev;
+			temp->prev = current;
+			if (current->prev == NULL)
+				*list = current;
+                         else
+				 current->prev->next = current;
+			 print_list(*list);
+			 temp = current->prev; 
 		}
-		current = temp;
+		current = current->next;
 	}
 }
-
-
-/*
- */
-
-void swap_nodes(listint_t **list, listint_t *node1, listint_t *node2)
-{
-	if (node1->prev)
-		node1->prev->next = node2;
-	else
-		*list = node2;
-
-	if (node2->next)
-		node2->next->prev = node1;
-
-	node1->next = node2->next;
-	node2->prev = node1->prev;
-	node2->next = node1;
-	node1->prev = node2;
-}
-
