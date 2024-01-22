@@ -29,9 +29,9 @@ void insertion_sort_list(listint_t **list);
 void selection_sort(int *array, size_t size);
 void swap_nodes(listint_t **list, listint_t *node1
 , listint_t *node2);
-int partition_with_lomuto(int array[], int lowerband, int upperband);
+int partition_with_lomuto(int array[], int lowerband, int upperband, size_t arr_size);
 void swap(int *element1, int *element2);
 void quick_sort(int *array, size_t size);
-void main_sort(int *array,int lowerband, int upperband);
+void main_sort(int *array,int lowerband, int upperband, size_t size);
 
 #endif

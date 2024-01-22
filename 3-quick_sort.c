@@ -1,6 +1,5 @@
 #include "sort.h"
 
-
 /**
  *  partition_with_lomuto - This function is use to partition an
  *  array into two to sort it with quick sorting
@@ -10,12 +9,13 @@
  *  Return: The Pivot of the partition
  */
 
-int partition_with_lomuto(int array[], int lowerband, int upperband)
+int partition_with_lomuto(int array[], int lowerband, int upperband, size_t arr_size)
 {
 	/* Lomuto chooses the upperband as Pivot */
 	/*size_t arr_size;*/
 	int pivot = array[upperband];
-	int i, j;
+	int i = lowerband - 1;
+	int j;
 
 	/* Loop through the array from low to upperband - 1 index */
 	for (j = lowerband; j < upperband; j++)
@@ -74,7 +74,7 @@ void quick_sort(int *array, size_t size)
 	/* If array is NULL or the length is not more than 1 */
 	if (array == NULL || size < 2)
 		return;
-	main_sort(array, 0, size - 1);
+	main_sort(array, 0, size - 1, size);
 }
 
 /**
@@ -84,14 +84,14 @@ void quick_sort(int *array, size_t size)
  * @upperband: the size - 1 elements
  */
 
-void main_sort(int *array, int lowerband, int upperband)
+void main_sort(int *array, int lowerband, int upperband, size_t size)
 {
 	int pivot;
 
 	if (lowerband < upperband)
 	{
-		pivot = partition_with_lomuto(array, lowerband, upperband);
-		main_sort(array, lowerband, pivot - 1);
-		main_sort(array, pivot + 1, upperband);
+		pivot = partition_with_lomuto(array, lowerband, upperband, size);
+		main_sort(array, lowerband, pivot - 1, size);
+		main_sort(array, pivot + 1, upperband, size);
 	}
 }
