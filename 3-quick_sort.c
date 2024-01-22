@@ -6,10 +6,12 @@
  *  @array: The array to be sorted
  *  @lowerband: The first element/index of the array
  *  @upperband: The last element/index of the array
+ *  @arr_size: This is the length of the array
  *  Return: The Pivot of the partition
  */
 
-int partition_with_lomuto(int array[], int lowerband, int upperband, size_t arr_size)
+int partition_with_lomuto(int array[], int lowerband,
+		int upperband, size_t arr_size)
 {
 	/* Lomuto chooses the upperband as Pivot */
 	/*size_t arr_size;*/
@@ -82,6 +84,7 @@ void quick_sort(int *array, size_t size)
  * @array: array of elements to sort
  * @lowerband: the firt index
  * @upperband: the size - 1 elements
+ * @size: This is the length of the array
  */
 
 void main_sort(int *array, int lowerband, int upperband, size_t size)
