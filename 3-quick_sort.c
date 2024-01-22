@@ -14,7 +14,6 @@ int partition_with_lomuto(int array[], int lowerband,
 		int upperband, size_t arr_size)
 {
 	/* Lomuto chooses the upperband as Pivot */
-	/*size_t arr_size;*/
 	int pivot = array[upperband];
 	int i = lowerband - 1;
 	int j;
@@ -90,6 +89,7 @@ void quick_sort(int *array, size_t size)
 void main_sort(int *array, int lowerband, int upperband, size_t size)
 {
 	int pivot;
+	(void)size;
 
 	if (lowerband < upperband)
 	{
