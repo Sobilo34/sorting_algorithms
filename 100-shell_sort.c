@@ -39,14 +39,10 @@ void shell_sort(int *array, size_t size)
 		}
 
 		gap /= 3;
-
-		/* Print array as expected */
+		/* Print array each time interval is decresed*/
 		print_array(array, size);
 	}
 }
-
-
-#include "sort.h"
 
 /**
  * swap - This is to two elements in an array
