@@ -33,5 +33,6 @@ int partition_with_lomuto(int array[], int lowerband, int upperband, size_t arr_
 void swap(int *element1, int *element2);
 void quick_sort(int *array, size_t size);
 void main_sort(int *array,int lowerband, int upperband, size_t size);
+void shell_sort(int *array, size_t size);
 
 #endif
