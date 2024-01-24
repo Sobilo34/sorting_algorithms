@@ -43,11 +43,12 @@ void main_sort_hoare(int *array, int lowerband, int upperband, size_t size)
  * @array: The array to be sorted
  * @lowerband: the first index
  * @upperband: The last index
- * @size: The size of the array
+ * @arr_size: The size of the array
  * Return: The pivot of the partition
  */
 
-int partition_with_hoare(int *array, int lowerband, int upperband, size_t arr_size)
+int partition_with_hoare(int *array, int lowerband,
+		int upperband, size_t arr_size)
 {
 	int pivot = array[upperband];
 	int i = lowerband - 1;
@@ -55,7 +56,7 @@ int partition_with_hoare(int *array, int lowerband, int upperband, size_t arr_si
 
 	while (array[i] < pivot)
 	{
-			i++;
+		i++;
 	}
 
 	while (array[j] > pivot)
