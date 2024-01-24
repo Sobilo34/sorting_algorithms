@@ -37,11 +37,11 @@ void main_sort(int *array, int lowerband,
 		int upperband, size_t size);
 void shell_sort(int *array, size_t size);
 void counting_sort(int *array, size_t size);
+void cocktail_sort_list(listint_t **list);
 void quick_sort_hoare(int *array, size_t size);
 void main_sort_hoare(int *array, int lowerband, int upperband, size_t size);
 void swap_print(int *array, int i, int j, size_t size);
 int partition_with_hoare(int *array, int upperband,
 		int lowerband, size_t arr_size);
-
 
 #endif
