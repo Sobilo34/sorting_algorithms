@@ -54,24 +54,21 @@ int partition_with_hoare(int *array, int lowerband,
 	int i = lowerband - 1;
 	int j = upperband + 1;
 
-	while (array[i] < pivot)
+	while (1)
 	{
-		i++;
+		do {
+			i++;
+		} while (array[i] < pivot);
+
+		do {
+			j--;
+		} while (array[j] > pivot);
+
+		if (i >= j)
+			return (j);
+
+		swap_print(array, i, j, arr_size);
 	}
-
-	while (array[j] > pivot)
-	{
-		j--;
-	}
-
-	if (i >= j)
-	{
-		return (j);
-	}
-
-	swap_print(array, i, j, arr_size);
-
-	return (i);
 }
 
 
