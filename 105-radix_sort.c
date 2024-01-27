@@ -1,89 +1,98 @@
 #include "sort.h"
 #include <stdlib.h>
 
-
 /**
- * radix_sort - Sorts an array of integers in ascending order
- * using the LSD Radix sort algorithm
- * @array: The array to be sorted
- * @size: The size of the array
+ * my_count_sort - This is a functin that sorts an array
+ * using the counting sort algorithm
+ * @arr: The array to be sorted
+ * @arr_size: The length of the array
+ * @exp_val: The current exponent value (1, 10, 100, ...)
  */
 
-void radix_sort(int *array, size_t size)
-{
-	int max, exp;
-
-	if (array == NULL || size < 2)
-		return;
-
-	max = getMax(array, size);
-
-	for (exp = 1; max / exp > 0; exp *= 10)
-		countSort(array, size, exp);
-}
-
-/**
- * getMax - Finds the maximum value in an array
- * @array: The array to find the maximum value in
- * @size: The size of the array
- * Return: The maximum value in the array
- */
-
-int getMax(int *array, size_t size)
-{
-	int max = array[0];
-	size_t i;
-
-	for (i = 1; i < size; i++)
-	{
-		if (array[i] > max)
-			max = array[i];
-	}
-
-	return (max);
-}
-
-/**
- * countSort - Sorts an array using the counting sort algorithm
- * @array: The array to be sorted
- * @size: The size of the array
- * @exp: The current exponent value (1, 10, 100, ...)
- */
-
-void countSort(int *array, size_t size, int exp)
+void my_count_sort(int *arr, size_t arr_size, int exp_val)
 {
 	const int base = 10;
-	int *output = malloc(size * sizeof(int));
-	size_t i;
-	int *count = NULL;
+	int *result = malloc(arr_size * sizeof(int));
+	size_t index;
+	int *count_arr = NULL;
 
-	if (output == NULL)
+	if (result == NULL)
 		return;
 
-	count = calloc(base, sizeof(int));
+	count_arr = calloc(base, sizeof(int));
 
-	if (count == NULL)
+	if (count_arr == NULL)
 	{
-		free(output);
+		free(result);
 		return;
 	}
 
-	for (i = 0; i < size; i++)
-		count[(array[i] / exp) % base]++;
+	for (index = 0; index < arr_size; index++)
+		count_arr[(arr[index] / exp_val) % base]++;
 
-	for (i = 1; i < (size_t)base; i++)
-		count[i] += count[i - 1];
+	for (index = 1; index < (size_t)base; index++)
+		count_arr[index] += count_arr[index - 1];
 
-	for (i = size; i > 0; i--)
+	for (index = arr_size; index > 0; index--)
 	{
-		output[count[(array[i - 1] / exp) % base] - 1] = array[i - 1];
-		count[(array[i - 1] / exp) % base]--;
+		result[count_arr[(arr[index - 1] / exp_val) % base] - 1] = arr[index - 1];
+		count_arr[(arr[index - 1] / exp_val) % base]--;
 	}
 
-	for (i = 0; i < size; i++)
-		array[i] = output[i];
+	for (index = 0; index < arr_size; index++)
+		arr[index] = result[index];
 
-	print_array(array, size);
-	free(output);
-	free(count);
+	print_array(arr, arr_size);
+	free(result);
+	free(count_arr);
+}
+
+
+/**
+ * radix_sort - This is radix sort algorithm that sorts
+ * an array of integers in ascending order
+ * @arr: The array to be sorted
+ * @arr_size: The length of the array
+ */
+
+void radix_sort(int *arr, size_t arr_size)
+{
+	int high, exp_val;
+
+	/* If the array is empty or index is not more than 1*/
+	if (arr == NULL || arr_size < 2)
+	{
+		return;
+	}
+
+	high = gethighest(arr, arr_size);
+
+	for (exp_val = 1; high / exp_val > 0; exp_val *= 10)
+	{
+		my_count_sort(arr, arr_size, exp_val);
+	}
+}
+
+/**
+ * gethighest - This is the function that gets the highest
+ * value in an array of integer
+ * @arr: The array to find the highest val
+ * @arr_size: The length of the array
+ * Return: The highest value in array
+ */
+
+int gethighest(int *arr, size_t arr_size)
+{
+	int high = arr[0];
+	size_t index;
+
+	for (index = 1; index < arr_size; index++)
+	{
+		if (arr[index] > high)
+		{
+			high = arr[index];
+		}
+	}
+
+	return (high);
 }

@@ -43,8 +43,8 @@ void main_sort_hoare(int *array, int lowerband, int upperband, size_t size);
 void swap_print(int *array, int i, int j, size_t size);
 int partition_with_hoare(int *array, int upperband,
 		int lowerband, size_t arr_size);
-int getMax(int *array, size_t size);
-void countSort(int *array, size_t size, int exp);
-void radix_sort(int *array, size_t size);
+int gethighest(int *arr, size_t arr_size);
+void my_count_sort(int *arr, size_t arr_size, int exp_val);
+void radix_sort(int *arr, size_t arr_size);
 
 #endif
